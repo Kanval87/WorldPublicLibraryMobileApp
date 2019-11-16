@@ -32,39 +32,120 @@ class MyStatefulWidget extends StatefulWidget {
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 1;
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text('Index 0: Scan'),
-    Text('Index 1: Library Shelf'),
-    Text('Index 2: Search'),
-  ];
-
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
 
+  var _bottomNavigationBar;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('World Public Library'),
-      ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.camera), title: Text('Scan')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.library_books), title: Text('Library Shelf')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.search), title: Text('Search')),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.deepPurple,
-        onTap: _onItemTapped,
-      ),
+    _bottomNavigationBar = BottomNavigationBar(
+      items: <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(Icons.camera),
+          title: Text(
+            'Scan',
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
+          activeIcon: Icon(
+            Icons.camera,
+            color: Theme.of(context).primaryColor,
+          ),
+        ),
+        BottomNavigationBarItem(
+          activeIcon: Icon(
+            Icons.library_books,
+            color: Theme.of(context).primaryColor,
+          ),
+          icon: Icon(Icons.library_books),
+          title: Text(
+            'Library Shelf',
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
+        ),
+        BottomNavigationBarItem(
+          activeIcon: Icon(
+            Icons.search,
+            color: Theme.of(context).primaryColor,
+          ),
+          icon: Icon(Icons.search),
+          title: Text(
+            'Search',
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
+        ),
+      ],
+      currentIndex: _selectedIndex,
+      selectedItemColor: Colors.deepPurple,
+      onTap: _onItemTapped,
     );
+
+    switch (_selectedIndex) {
+      case 0:
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('World Public Library'),
+          ),
+          body: Center(
+            child: ScanModule(),
+          ),
+          bottomNavigationBar: _bottomNavigationBar,
+        );
+      case 1:
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('World Public Library'),
+          ),
+          body: Center(
+            child: Text('2:'),
+          ),
+          bottomNavigationBar: _bottomNavigationBar,
+        );
+      case 2:
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('World Public Library'),
+          ),
+          body: Center(
+            child: Text('3:'),
+          ),
+          bottomNavigationBar: _bottomNavigationBar,
+        );
+      default:
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('World Public Library'),
+          ),
+          body: Center(
+            child: Text('default:'),
+          ),
+          bottomNavigationBar: _bottomNavigationBar,
+        );
+    }
+  }
+}
+
+class ScanModule extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return _ScanModuleState();
+  }
+}
+
+class _ScanModuleState extends State<ScanModule> {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Text('ScanModule');
   }
 }
