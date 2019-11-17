@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wpl_mobile_app/ui/scan_module/scan_module.dart';
+import 'package:wpl_mobile_app/ui/search_module/search_module.dart';
 
 class HomeWidget extends StatefulWidget {
   HomeWidget({Key key}) : super(key: key);
@@ -95,7 +96,7 @@ class _HomeWidgetState extends State<HomeWidget> {
             title: Text('World Public Library'),
           ),
           body: Center(
-            child: Text('3:'),
+            child: SearchModule(),
           ),
           bottomNavigationBar: _bottomNavigationBar,
         );
